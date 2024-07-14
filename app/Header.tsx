@@ -30,9 +30,10 @@ export const headerItems = [
           // href === /posts/category/xxx  动态路由 (注意动态路由的href最后有一个/ 必须！！)
           {
             id: 4,
-            label: "分类",
+            label: "各种分类",
             icon: MdCategory,
-            href: "/posts/category/1",
+            // 这个是例子，生产不用加2
+            href: "/posts/category/2",
             dynamic: true,
           },
         ],
@@ -48,7 +49,7 @@ export const headerItems = [
 ];
 const Header = () => {
   const pathname = usePathname();
-  const currentHeader = findNodeByHref(headerItems, pathname) || headerItems[0];
+  const currentHeader = findNodeByHref(headerItems, pathname);
   console.log([...headerItems]);
 
   return (
@@ -58,6 +59,9 @@ const Header = () => {
         width: "100%",
         padding: "16px",
         background: "violet",
+        display: "flex",
+        alignItems: "center",
+        gap: "4px",
       }}
     >
       <span>{currentHeader?.label}</span>
@@ -69,7 +73,7 @@ const Header = () => {
 export default Header;
 
 const IconItem = ({ icon: Icon }: { icon: IconType }) => {
-  return <Icon />;
+  return <Icon style={{ display: "block" }} />;
 };
 
 // 通过href找到相应的对象，包括children里的也能找到

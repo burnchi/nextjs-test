@@ -4,6 +4,20 @@ import { headerItems } from "./Header";
 import Link from "next/link";
 import { IconType } from "react-icons";
 
+interface navItemProps {
+  id: number;
+  label: string;
+  icon: IconType;
+  href: string;
+}
+
+interface navItemsProps {
+  id: number;
+  label: string;
+  icon: IconType;
+  href: string;
+  children?: navItemProps[];
+}
 const NavBar = () => {
   return (
     <div
@@ -23,21 +37,6 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-interface navItemProps {
-  id: number;
-  label: string;
-  icon: IconType;
-  href: string;
-}
-
-interface navItemsProps {
-  id: number;
-  label: string;
-  icon: IconType;
-  href: string;
-  children?: navItemProps[];
-}
 
 const renderNavItems = (navItems: navItemsProps[], level = 0) => {
   return navItems.map((item) => {
